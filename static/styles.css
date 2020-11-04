@@ -1,0 +1,147 @@
+:root {
+    --color1: #122C34; /* white text */
+    --color2: #224870; /* white text */
+    --color3: #2A4494; /* white text */
+    --color4: #4EA5D9; /* white text */
+    --color5: #44CFCB; /* black text */
+  }
+
+body {
+  font-family: Garamond;
+}
+
+#top_bar {
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#main_menu {
+  width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#login_menu {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#content_container {
+  display: flex;
+  justify-content: center;
+}
+
+#stopwatch_container {
+  height: 350px;
+  width: 550px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 70% 1fr 1fr;
+  grid-template-areas: 
+    "timer timer timer"
+    "play pause stop"
+    "save save save";
+}
+
+#study_timer {
+  font-size: 160px;
+  text-align: center;
+  grid-area: timer;
+  align-self: end;
+}
+
+#start_study_timer {
+  grid-area: play;
+  justify-self: end;
+}
+
+#pause_study_timer {
+  grid-area: pause;
+  justify-self: center;
+}
+
+#stop_study_timer {
+  grid-area: stop;
+  justify-self: start;
+}
+
+#save_register {
+  grid-area: save;
+  align-self: center;
+  justify-self: center;
+}
+
+.img_btn:hover {
+  cursor: pointer;
+}
+
+#play_btn {
+  width: 3em;
+  height: 3em;
+  border: none;
+  background-color: white;
+  background-image: url("../static/img/play_btn.svg");
+}
+
+#pause_btn {
+  width: 3em;
+  height: 3em;
+  border: none;
+  background-color: white;
+  background-image: url("../static/img/pause_btn.svg");
+}
+
+#reset_btn {
+  width: 3em;
+  height: 3em;
+  border: none;
+  background-color: white;
+  background-image: url("../static/img/stop_btn.svg");
+}
+
+#save_btn {
+  width: 3em;
+  height: 3em;
+  background-color: white;
+  background-image: url("../static/img/save_btn.svg");
+  border: none;
+}
+
+#down_icon {
+  width: 1.5em;
+  height: auto;
+  margin-left: -5px;
+  margin-bottom: -10px;
+}
+
+#down_icon:hover {
+  cursor: pointer;
+}
+
+#study_music {
+  text-align: center;
+  margin-top: 160px;
+  font-size: 1.2em;
+  font-weight: bolder;
+}
+
+#embed_video {
+  margin-top: 20px;
+  width: 0;
+  height: 0;
+}
+
+#footer {
+  width: 100%;
+  text-align: center;
+}

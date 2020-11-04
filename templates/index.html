@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Icons made by Raj Dev from https://freeicons.io/profile/714 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get to study</title>
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div id="container">
+        <nav id="top_bar">
+            <ul id="main_menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/history">My History</a></li>
+                <li><a href="/tips">Useful tips</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <ul id="login_menu">
+                <li><a href="/login">Sign In</a></li>
+                <li><a href="/register">Sign Up</a></li>
+            </ul>
+        </nav>
+        <main id="content_container">
+            <div id="stopwatch_container">
+                <div id="study_timer">00:00:00
+                </div>
+                <div id="start_study_timer">
+                    <button id="play_btn" class="img_btn" onclick="startTimer()"></button>
+                </div>
+                <div id="pause_study_timer">
+                    <button id="pause_btn" class="img_btn" onclick="pauseTimer()"></button>
+                </div>
+                <div id="stop_study_timer">
+                    <button id="reset_btn" class="img_btn" onclick="resetTimer()"></button>
+                </div>
+                <div id="save_register">
+                    <button id="save_btn" class="img_btn"></button>
+                </div>
+            </div>
+        </main>
+        <div id="study_music">
+            <div id="study_text">Wanna hear some music?
+            <img src="../static/img/down_icon.svg" id="down_icon" onclick="videoToggle()">
+            </div>
+            <iframe id="embed_video" width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+        </div>
+        <footer id="footer">Igor F. Vicente - 2020 - CS50 Final Project</footer>
+    </div>
+    <script type="text/javascript" src="/static/script.js"></script>
+</body>
+</html>
