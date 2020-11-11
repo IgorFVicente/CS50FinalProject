@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %} - Study Timer</title>
+<link rel='stylesheet' href="{{ url_for('static', filename='basestyle.css') }}">
+<nav id="top_bar">
+    <ul id="main_menu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('history') }}">My History</a></li>
+        <li><a href="tips.html">Useful tips</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+    {% if g.user %}
+      <ul id="user_menu">
+          <li><span>{{ g.user['username'] }}</span></li>
+          <li><a href="{{ url_for('auth.logout') }}">Sign Up</a></li>
+      </ul>
+    {% else %}
+      <ul id="login_menu">
+          <li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
+          <li><a href="{{ url_for('auth.register') }}">Sign Up</a></li>
+      </ul>
+    {% endif %}
+</nav>
+<section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </section>

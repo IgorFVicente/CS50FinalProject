@@ -24,9 +24,19 @@ def create_app(test_config=None):
         pass
     
     # a simple page that says hello
-    @app.route('/hello')
-    def hello():
+    @app.route('/')
+    def index():
         return render_template('index.html')
+
+
+    @app.route('/history')
+    def history():
+        return render_template('history.html')
+
+
+    @app.route('/test')
+    def test():
+        return render_template('base.html')
 
     from . import db
     db.init_app(app)
