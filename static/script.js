@@ -1,6 +1,7 @@
 // Much obliged for Jamie Uttariello JS stopwatch script in https://medium.com/@olinations/an-accurate-vanilla-js-stopwatch-script-56ceb5c6f45b
 
 var timerDisplay = document.getElementById('study_timer');
+var timerRepeat = document.getElementById('timer_repeat');
 var startTime;
 var updateTime;
 var difference;
@@ -39,7 +40,8 @@ function resetTimer() {
     difference = 0;
     paused = 0;
     running = 0;
-    timerDisplay.innerHTML = '00:00:00'
+    timerDisplay.innerHTML = '00:00:00';
+    timerRepeat.value = '00:00:00';
 }
 
 function getShowTime() {
@@ -56,6 +58,7 @@ function getShowTime() {
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
     timerDisplay.innerHTML = hours + ':' + minutes + ':' + seconds;
+    timerRepeat.value = hours + ':' + minutes + ':' + seconds;
     if (hours == 23 & minutes == 59 & seconds == 59) {
         resetTimer();
     }

@@ -85,6 +85,10 @@ a {
   cursor: pointer;
 }
 
+#timer_repeat {
+  display: none;
+}
+
 #play_btn {
   width: 3em;
   height: 3em;

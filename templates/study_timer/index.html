@@ -26,6 +26,7 @@
             <div id="stopwatch_container">
                 <div id="study_timer">00:00:00
                 </div>
+                <input type="text" id="timer_repeat" value="00:00:00">
                 <div id="start_study_timer">
                     <button id="play_btn" class="img_btn" onclick="startTimer()"></button>
                 </div>
@@ -36,7 +37,7 @@
                     <button id="reset_btn" class="img_btn" onclick="resetTimer()"></button>
                 </div>
                 <div id="save_register">
-                    <button id="save_btn" class="img_btn"></button>
+                    <button id="save_btn" class="img_btn" type="submit" formmethod="POST"></button>
                 </div>
             </div>
         </main>

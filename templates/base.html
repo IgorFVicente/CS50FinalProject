@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <title>{% block title %}{% endblock %} - Study Timer</title>
-<link rel='stylesheet' href="{{ url_for('static', filename='basestyle.css') }}">
+<link rel='stylesheet' href="{{ url_for('static', filename='reset.css') }}">
+<link rel='stylesheet' href="{{ url_for('static', filename='styles.css') }}">
+<div id="container">
 <nav id="top_bar">
     <ul id="main_menu">
         <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('history') }}">My History</a></li>
+        <li><a href="{{ url_for('study_timer.history') }}">My History</a></li>
         <li><a href="tips.html">Useful tips</a></li>
         <li><a href="about.html">About</a></li>
     </ul>
@@ -28,4 +30,5 @@
       <div class="flash">{{ message }}</div>
     {% endfor %}
     {% block content %}{% endblock %}
-  </section>
+</section>
+</div>

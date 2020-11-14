@@ -11,9 +11,9 @@ CREATE TABLE user (
 CREATE TABLE records (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    hours INTEGER NOT NULL,
-    minutes INTEGER NOT NULL,
-    seconds INTEGER NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT (datetime('now', 'localtime')),
+    hours TEXT NOT NULL,
+    minutes TEXT NOT NULL,
+    seconds TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
