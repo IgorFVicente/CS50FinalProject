@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">{% endblock %}
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
 {% block content %}
     <main id="content_container">
-        <form action="{{ url_for('study_timer.save') }}" method="POST">    
+        <form id="timer_form" action="{{ url_for('study_timer.save') }}" method="POST">    
             <div id="stopwatch_container">
                 <div id="study_timer">00:00:00
                 </div>
@@ -17,7 +17,7 @@
                 </div>
                 <input type="text" name="timer_repeat" id="timer_repeat" value="00:00:00">
                 <div id="save_register">
-                    <button id="save_btn" class="img_btn" type="submit"></button>
+                    <button id="save_btn" class="img_btn" type="button" onclick="save()"></button>
                 </div> 
             </div>
         </form>

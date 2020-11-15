@@ -1,0 +1,19 @@
+#account_box {
+    width: 600px;
+    margin: auto;
+    margin-top: 20vh;
+}
+
+#account_content {
+    width: 500px;
+    margin: auto;
+}
+
+body {
+    font-family: Garamond;
+    font-weight: bolder;
+}
+
+#confirm_change {
+    display: none;
+}

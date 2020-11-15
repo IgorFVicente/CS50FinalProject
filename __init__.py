@@ -36,5 +36,7 @@ def create_app(test_config=None):
     app.register_blueprint(study_timer.bp)
     app.add_url_rule('/', endpoint='index')
     
+    from . import account
+    app.register_blueprint(account.bp)
 
     return app

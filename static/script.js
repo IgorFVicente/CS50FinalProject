@@ -35,13 +35,19 @@ function pauseTimer() {
 }
 
 function resetTimer() {
-    clearInterval(tInterval);
-    savedTime = 0;
-    difference = 0;
-    paused = 0;
-    running = 0;
-    timerDisplay.innerHTML = '00:00:00';
-    timerRepeat.value = '00:00:00';
+    pauseTimer();
+    var confirmation = confirm('Are you sure you want to reset your timer?')
+    if (confirmation == true) {
+        clearInterval(tInterval);
+        savedTime = 0;
+        difference = 0;
+        paused = 0;
+        running = 0;
+        timerDisplay.innerHTML = '00:00:00';
+        timerRepeat.value = '00:00:00';
+    } else {
+        startTimer();
+    }
 }
 
 function getShowTime() {
@@ -74,5 +80,16 @@ function videoToggle() {
         video.style.width = "0";
         video.style.height = "0";
         toggle = false;
+    }
+}
+
+function save() {
+    pauseTimer();
+    var timer_form = document.getElementById('timer_form');
+    if (confirm('Do you want to register this record and reset the timer?')) {
+        timer_form.submit();
+    } else {
+        startTimer();
+        return false;
     }
 }

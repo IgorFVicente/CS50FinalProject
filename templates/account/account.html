@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='account.css') }}">{% endblock %}
+{% block title %}Account - {% endblock %}
+{% block header %}
+    <h1></h1>
+{% endblock %}
+{% block content %}
+<div id="account_box">
+<div id="account_content">
+    <form id="account_form" action="{{ url_for('account.save_settings') }}" method="POST">
+        <h1 id="username">Username: 
+            <input type="text" id="account_username" name="account_username" value="{{ account_info['username'] }}">
+            <!-- <button type="button" id="change_name_btn" onclick="change_username()">Edit</button> -->
+        </h1>
+        <h1 id="streak">Study Streak: {{ account_info['streak'] }}</h1>
+        <h1 id="study_time">Daily Study Goal (in minutes) : 
+            <input type="number" id="account_study_time" name="account_study_time" value="{{ account_info['min_study_time'] }}">
+            <!-- <button type="button" id="change_goal_btn" onclick="change_goal()">Edit</button> -->
+        </h1>
+        <button type="submit" id="save_settings_btn">Save Settings</button>
+    </form>
+    <form id="change_password_form" action="{{ url_for('account.change_login') }}">
+        <button type="submit" id="change_pw_btn">Change login information</button>
+    </form>
+</div>
+</div>
+<script type="text/javascript" src="/static/account.js"></script>
+{% endblock %} 
