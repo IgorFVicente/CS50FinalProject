@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS records;
 CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
+    email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     min_study_time INTEGER DEFAULT 60,
     streak TEXT DEFAULT '0'

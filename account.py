@@ -10,14 +10,20 @@ from myproject.db import get_db
 
 bp = Blueprint('account', __name__, url_prefix='/account')
 
-@bp.route('/change-logind', methods=('GET', 'POST'))
+@bp.route('/change-login', methods=('GET', 'POST'))
 @login_required
 def change_login():
+    db = get_db()
+    account_info = db.execute(
+        'SELECT email FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],)
+    ).fetchone()
     if request.method == 'GET':
-        return render_template('account/change-login.html')
+        return render_template('account/change-login.html', account_info=account_info)
     
     elif request.method == 'POST':
-        return render_template('account/change-lofin.html')
+        return render_template('account/change-login.html')
 
 
 @bp.route('/save-settings', methods=('POST',))
