@@ -8,9 +8,13 @@ from myproject.db import get_db
 
 bp = Blueprint('study_timer', __name__)
 
+def validate_goal():
+
+
+
 @bp.route('/')
 def index():
-    return render_template('study_timer/index2.html')
+    return render_template('study_timer/index.html')
 
 
 @bp.route('/history')
@@ -41,3 +45,25 @@ def save():
     )
     db.commit()
     return redirect(url_for('study_timer.index'))
+
+
+@bp.route('/account', methods=('GET', 'POST'))
+@login_required
+def account():
+    db = get_db()
+    account_info = db.execute(
+        'SELECT username, min_study_time, streak FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],)
+    ).fetchone()
+    return render_template('study_timer/account.html', account_info=account_info)
+
+
+@bp.route('/tips')
+def tips():
+    return render_template('study_timer/tips.html')
+
+
+@bp.route('/about')
+def about():
+    return render_template('study_timer/about.html')

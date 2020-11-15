@@ -1,40 +1,4 @@
-:root {
-    --color1: #122C34; /* white text */
-    --color2: #224870; /* white text */
-    --color3: #2A4494; /* white text */
-    --color4: #4EA5D9; /* white text */
-    --color5: #44CFCB; /* black text */
-  }
-
-body {
-  font-family: Garamond;
-}
-
-#top_bar {
-  margin: auto;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: space-between;
-}
-
-#main_menu {
-  width: 500px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-#login_menu {
-  width: 100px;
-  display: flex;
-  justify-content: space-between;
-}
-
-a {
-  color: black;
-  font-weight: 600;
-  text-decoration: none;
-}
+/*icons from: https://freeicons.io/icon-list/business-and-online-icons*/
 
 #content_container {
   display: flex;

@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<title>{% block title %}{% endblock %} - Study Timer</title>
-<link rel='stylesheet' href="{{ url_for('static', filename='reset.css') }}">
-<link rel='stylesheet' href="{{ url_for('static', filename='styles.css') }}">
+<head>
+  <title>{% block title %}{% endblock %}Study Timer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='basestyle.css') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png')}}"/>
+  {% block style %}{% endblock %}
+</head>
 <div id="container">
 <nav id="top_bar">
     <ul id="main_menu">
         <li><a href="{{ url_for('index') }}">Home</a></li>
         <li><a href="{{ url_for('study_timer.history') }}">My History</a></li>
-        <li><a href="tips.html">Useful tips</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="{{ url_for('study_timer.tips') }}">Useful tips</a></li>
+        <li><a href="{{ url_for('study_timer.about') }}">About</a></li>
     </ul>
     {% if g.user %}
       <ul id="user_menu">
-          <li><span>{{ g.user['username'] }}</span></li>
-          <li><a href="{{ url_for('auth.logout') }}">Sign Up</a></li>
+          <li><span id="user">{{ g.user['username'] }}</span></li>
+          <div id="user_dropdown">
+            <li><a href="{{ url_for('study_timer.account') }}" class="dropdown_link">Account</a></li>
+            <li><a href="{{ url_for('auth.logout') }}" class="dropdown_link">Logout</a></li>
+          </div>
       </ul>
     {% else %}
       <ul id="login_menu">

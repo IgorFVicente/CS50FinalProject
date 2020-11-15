@@ -5,7 +5,8 @@ CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    min_study_time INTEGER DEFAULT 60
+    min_study_time INTEGER DEFAULT 60,
+    streak TEXT DEFAULT '0'
 );
 
 CREATE TABLE records (
