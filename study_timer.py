@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 )
 from werkzeug.exceptions import abort
 from datetime import date
@@ -19,18 +19,19 @@ def validate_goal(id):
     min_time = user_data['min_study_time']
     db = get_db()
     today = date.today()
-    today = today.strftime("%d/%m/%Y")
+    today = today.strftime('%Y-%m-%d')
     timer_history = db.execute(
-        'SELECT r.id, created, hours, minutes, seconds, user_id'
-        ' FROM records r JOIN user u ON r.user_id = u.id'
-        ' WHERE u.id = ? AND created = ? ORDER BY created DESC',
+        'SELECT id, created, created_date, created_time, hours, minutes, seconds, user_id'
+        ' FROM records'
+        ' WHERE user_id = ? AND created_date = ? ORDER BY created DESC',
         (id, today)
     ).fetchall()
+
     today_sum = 0
     for history in timer_history:
-        today_sum += history['hours'] * 60
-        today_sum += history['minutes']
-        today_sum += history['seconds'] / 60
+        today_sum += int(history['hours']) * 60
+        today_sum += int(history['minutes'])
+        today_sum += int(history['seconds']) / 60    
     if today_sum >= min_time:
         return True
     else:
@@ -47,7 +48,7 @@ def index():
 def history():
     db = get_db()
     timer_history = db.execute(
-        'SELECT r.id, created, hours, minutes, seconds, user_id'
+        'SELECT r.id, created, created_date, created_time, hours, minutes, seconds, user_id'
         ' FROM records r JOIN user u ON r.user_id = u.id'
         ' WHERE u.id = ? ORDER BY created DESC',
         (g.user['id'],)
@@ -69,18 +70,22 @@ def save():
         (hours, minutes, seconds, g.user['id'])
     )
     db.commit()
-    if validate_goal(g.user['id']):
-        user_data = db.execute(
+
+    user_data = db.execute(
             'SELECT * FROM user '
             ' WHERE id = ?',
             (g.user['id'],)
         ).fetchone()
-        streak = user_data['streak']
+
+    today = date.today()
+    today = today.strftime('%d-%m-%Y')
+    if validate_goal(g.user['id']) and user_data['last_day'] != today:
+        current_streak = str(int(user_data['streak']) + 1)
         db.execute(
             'UPDATE user'
-            ' SET streak = ?'
-            ' WHERE id = ?',
-            (streak + 1, g.user['id'])
+            ' SET last_day = ?,'
+            ' streak = ?',
+            (today, current_streak)
         )
         db.commit()
     return redirect(url_for('study_timer.index'))

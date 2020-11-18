@@ -12,6 +12,8 @@
                 <div>
                     <h1>{{ history['user_id'] }}</h1>
                     <div class="about">by {{ history['user_id'] }} on {{ history['created'].strftime('%d-%m-%Y') }}</div>
+                    <div class="about">by {{ history['user_id'] }} on {{ history['created_date'] }}</div>
+                    <div class="about">by {{ history['user_id'] }} on {{ history['created_time'] }}</div>
                 </div>
             </header>
             <p class="body">{{ history['hours'] }} : {{ history['minutes'] }} : {{ history['seconds'] }}</p>
