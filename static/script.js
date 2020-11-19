@@ -10,7 +10,18 @@ var savedTime;
 var paused = 0;
 var running = 0;
 var toggle = false;
+var saving = false;
 
+
+function outOfPage() {
+    if (timerDisplay.innerText != '00:00:00') {
+        if (saving == false) {
+            return "warning"
+        }
+    } 
+}
+
+window.onbeforeunload = outOfPage;
 
 function startTimer() {
     if (!running) {
@@ -84,6 +95,7 @@ function videoToggle() {
 }
 
 function save() {
+    saving = true;
     pauseTimer();
     var timer_form = document.getElementById('timer_form');
     if (confirm('Do you want to register this record and reset the timer?')) {
