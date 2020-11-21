@@ -26,6 +26,10 @@ def register():
             error = 'Email is required.'
         elif not password:
             error = 'Password is required.'
+        elif len(username) < 6:
+            error = 'Username is too short.'
+        elif len(password) < 6 or not any(str.isdigit(c) for c in password) or not any(str.isalpha(c) for c in password):
+            error = 'Password must contain at least one number and one letter and must be at least six characters long.'
         elif db.execute (
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
