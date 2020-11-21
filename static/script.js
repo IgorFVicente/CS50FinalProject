@@ -11,7 +11,7 @@ var paused = 0;
 var running = 0;
 var toggle = false;
 var saving = false;
-
+var darkMode = false;
 
 function outOfPage() {
     if (timerDisplay.innerText != '00:00:00') {
@@ -103,5 +103,48 @@ function save() {
     } else {
         startTimer();
         return false;
+    }
+}
+
+function dark_mode() {
+    var imgBtn = document.getElementsByClassName('img_btn');
+    var playBtn = document.getElementById('play_btn');
+    var pauseBtn = document.getElementById('pause_btn');
+    var resetBtn = document.getElementById('reset_btn');
+    var saveBtn = document.getElementById('save_btn');
+    var downIcon = document.getElementById('down_icon');
+    var body = document.body;
+    var anchor = document.getElementsByTagName('a');
+    if (darkMode == false) {
+        body.style.backgroundColor = 'black';
+        body.style.color = 'white';
+        for (var i = 0; i < imgBtn.length; i++) {
+            imgBtn[i].style.backgroundColor = 'black';
+        }
+        for (var i = 0; i < imgBtn.length; i++) {
+            anchor[i].style.color = 'white';
+        }
+        playBtn.style.backgroundImage = 'url("../static/img/play_btn_white.svg")';
+        pauseBtn.style.backgroundImage = 'url("../static/img/pause_btn_white.svg")';
+        resetBtn.style.backgroundImage = 'url("../static/img/stop_btn_white.svg")';
+        saveBtn.style.backgroundImage = 'url("../static/img/save_btn_white.svg")';
+        downIcon.src = '../static/img/down_icon_white.svg'
+        darkMode = true;
+    }
+    else {
+        body.style.backgroundColor = 'white';
+        body.style.color = 'black';
+        for (var i = 0; i < imgBtn.length; i++) {
+            imgBtn[i].style.backgroundColor = 'white';
+        }
+        for (var i = 0; i < imgBtn.length; i++) {
+            anchor[i].style.color = 'black';
+        }
+        playBtn.style.backgroundImage = 'url("../static/img/play_btn.svg")';
+        pauseBtn.style.backgroundImage = 'url("../static/img/pause_btn.svg")';
+        resetBtn.style.backgroundImage = 'url("../static/img/stop_btn.svg")';
+        saveBtn.style.backgroundImage = 'url("../static/img/save_btn.svg")';
+        downIcon.src = '../static/img/down_icon.svg'
+        darkMode = false;
     }
 }

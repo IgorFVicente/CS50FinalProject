@@ -14,7 +14,7 @@
         </h1>
         <h1 id="streak">Study Streak: {{ account_info['streak'] }}</h1>
         <h1 id="study_time">Daily Study Goal (in minutes) : 
-            <input type="number" id="account_study_time" name="account_study_time" value="{{ account_info['min_study_time'] }}">
+            <input type="number" id="account_study_time" name="account_study_time" value="{{ account_info['min_study_time'] }}" min="1" max="1440">
             <!-- <button type="button" id="change_goal_btn" onclick="change_goal()">Edit</button> -->
         </h1>
         <button type="submit" id="save_settings_btn">Save Settings</button>

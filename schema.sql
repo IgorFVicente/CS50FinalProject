@@ -8,8 +8,7 @@ CREATE TABLE user (
     password TEXT NOT NULL,
     min_study_time INTEGER DEFAULT 60,
     streak TEXT DEFAULT '0',
-    saturday TEXT DEFAULT 'yes',
-    sunday TEXT DEFAULT 'yes',
+    weekdays TEXT DEFAULT 'sun-mon-tue-wed-thu-fri-sat',
     last_day TEXT
 );
 

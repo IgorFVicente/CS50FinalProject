@@ -45,6 +45,13 @@
   justify-self: center;
 }
 
+.img_btn {
+  width: 3em;
+  height: 3em;
+  border: none;
+  background-color: white;
+}
+
 .img_btn:hover {
   cursor: pointer;
 }
@@ -54,35 +61,19 @@
 }
 
 #play_btn {
-  width: 3em;
-  height: 3em;
-  border: none;
-  background-color: white;
   background-image: url("../static/img/play_btn.svg");
 }
 
 #pause_btn {
-  width: 3em;
-  height: 3em;
-  border: none;
-  background-color: white;
   background-image: url("../static/img/pause_btn.svg");
 }
 
 #reset_btn {
-  width: 3em;
-  height: 3em;
-  border: none;
-  background-color: white;
   background-image: url("../static/img/stop_btn.svg");
 }
 
 #save_btn {
-  width: 3em;
-  height: 3em;
-  background-color: white;
   background-image: url("../static/img/save_btn.svg");
-  border: none;
 }
 
 #down_icon {
