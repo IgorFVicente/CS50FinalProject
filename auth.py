@@ -30,13 +30,13 @@ def register():
             error = 'Username is too short.'
         elif len(password) < 6 or not any(str.isdigit(c) for c in password) or not any(str.isalpha(c) for c in password):
             error = 'Password must contain at least one number and one letter and must be at least six characters long.'
-        elif db.execute (
+        elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
             error = 'User {} is already registered.'.format(username)
-        elif db.execute (
+        elif db.execute(
             'SELECT id FROM user WHERE email = ?', (email,)
-        ).fetchone is not None:
+        ).fetchone() is not None:
             error = 'Email {} is already registered.'.format(email)
 
         if error is None:
@@ -75,16 +75,17 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            last_day = datetime.strptime(user['last_day'], '%d-%m-%Y').date()
-            today = date.today() 
-            if (today - last_day).days >= 2:
-                db.execute(
-                    'UPDATE user'
-                    ' SET streak = ?'
-                    ' WHERE id = ?',
-                    ('0', user['id'])
-                )
-                db.commit()
+            if user['last_day'] is not None:
+                last_day = datetime.strptime(user['last_day'], '%d-%m-%Y').date()
+                today = date.today() 
+                if (today - last_day).days >= 2:
+                    db.execute(
+                        'UPDATE user'
+                        ' SET streak = ?'
+                        ' WHERE id = ?',
+                        ('0', user['id'])
+                    )
+                    db.commit()
             return redirect(url_for('index'))
         
         flash(error)
