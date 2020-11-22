@@ -10,8 +10,16 @@ body {
   font-family: Garamond;
 }
 
+p {
+  font-size: 1.2em;
+}
+
+.tab {
+  margin-left: 20px;
+}
+
 #top_bar {
-  width: 100vw;
+  width: 95vw;
   margin: auto;
   margin-bottom: 40px;
   display: flex;
@@ -47,9 +55,13 @@ body {
 }
 
 #login_menu {
-  width: 100px;
   display: flex;
   justify-content: space-between;
+  margin-left: -120px;
+}
+
+#login_menu li {
+  width: 60px;
 }
 
 a {

@@ -47,13 +47,18 @@ def index():
 @login_required
 def history():
     db = get_db()
+    user_data = db.execute(
+        'SELECT * FROM user'
+        ' WHERE id = ?',
+        (g.user['id'],)
+    ).fetchone()
     timer_history = db.execute(
         'SELECT r.id, created, created_date, created_time, hours, minutes, seconds, user_id'
         ' FROM records r JOIN user u ON r.user_id = u.id'
         ' WHERE u.id = ? ORDER BY created DESC',
         (g.user['id'],)
     ).fetchall()
-    return render_template('study_timer/history.html', timer_history=timer_history)
+    return render_template('study_timer/history.html', timer_history=timer_history, user_data=user_data)
 
 
 @bp.route('/save', methods=('POST',))
@@ -96,11 +101,17 @@ def save():
 def account():
     db = get_db()
     account_info = db.execute(
-        'SELECT username, min_study_time, streak FROM user'
+        'SELECT * FROM user'
         ' WHERE id = ?',
         (g.user['id'],)
     ).fetchone()
-    return render_template('account/account.html', account_info=account_info)
+    c = 0
+    weekdays = []
+    #while c < len(account_info['weekdays']):
+    #    weekdays.append(account_info['weekdays'][c:c+3])
+    #    c += 3
+    weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+    return render_template('account/account.html', account_info=account_info, weekdays=weekdays)
 
 
 @bp.route('/tips')

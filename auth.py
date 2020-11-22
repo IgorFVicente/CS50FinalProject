@@ -16,20 +16,26 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
+        email_confirm = request.form['email_confirm']
         password = request.form['password']
+        password_confirm = request.form['password_confirm']
         db = get_db()
         error = None
 
         if not username:
             error = 'Username is required.'
         elif not email:
-            error = 'Email is required.'
+            error = 'E-mail is required.'
         elif not password:
             error = 'Password is required.'
         elif len(username) < 6:
             error = 'Username is too short.'
         elif len(password) < 6 or not any(str.isdigit(c) for c in password) or not any(str.isalpha(c) for c in password):
             error = 'Password must contain at least one number and one letter and must be at least six characters long.'
+        elif email != email_confirm:
+            error = 'The confirmation e-mail doesnt match.'
+        elif password != password_confirm:
+            error = "The provided passwords don't match."
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:

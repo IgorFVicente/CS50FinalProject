@@ -1,25 +1,27 @@
 {% extends 'base.html' %}
-
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='history.css') }}">{% endblock %}
 {% block title %}History - {% endblock %}
 {% block header %}
     <h1></h1>
 {% endblock %}
 
 {% block content %}
+    <div id="user_data">
+        <h1>STUDY STREAK: {{ user_data['streak'] }} </h1>
+        <h1>DAILY STUDY GOAL: {{ user_data['min_study_time'] }} min</h1>
+    </div>
+    <div id="history_box">
     {% for history in timer_history %}
-        <article class="history">
+        <div class="history_content">
             <header>
                 <div>
-                    <h1>{{ history['user_id'] }}</h1>
-                    <div class="about">by {{ history['user_id'] }} on {{ history['created'].strftime('%d-%m-%Y') }}</div>
-                    <div class="about">by {{ history['user_id'] }} on {{ history['created_date'] }}</div>
-                    <div class="about">by {{ history['user_id'] }} on {{ history['created_time'] }}</div>
+                    <div class="about">by {{ history['user_id'] }} on {{ history['created'] }}</div>
                 </div>
             </header>
             <p class="body">{{ history['hours'] }} : {{ history['minutes'] }} : {{ history['seconds'] }}</p>
-        </article>
+        </div>
         {% if not loop.last %}
-            <hr>
         {% endif %}
     {% endfor %}
+    </div>
 {% endblock %} 

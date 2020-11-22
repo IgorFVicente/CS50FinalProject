@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
-
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">{% endblock %}
 {% block title %}About - {% endblock %}
 {% block header %}
-    <h1></h1>
+    <h1 id="about_title">ABOUT</h1>
 {% endblock %}
 
 {% block content %}
-<div>
-    <p>This is my Harvard CS50 final project, it is a simple website application to register and control the time you spend studying. 
+<div id="about_content">
+    <p><span class="tab"></span>This is my Harvard CS50 final project, it is a simple website application to register and control the time you spend studying. 
         It was made to solve a necessity of mine and also because I thought it would be a fun project.</p>
-    <p>It is a simple CRUD website in which you can make an user, record the time you spend studying through the index timer and take a look at your
+    <br>
+    <p><span class="tab"></span>It is a simple CRUD website in which you can make an user, record the time you spend studying through the index timer and take a look at your
         history of time records. You can also set a goal of minimum time you should spent studying every day (your study goal) and how many
         days you have been reaching this goal. The design is quite minimalist to not take the focus away from the student 
         (also the reason there is a dark mode).
     </p>
-    <p>Hope it is a nice project to look and it's deserving of the CS50 certificate proving that I learnt and used the concepts
+    <br>
+    <p><span class="tab"></span>Hope it is a nice project to look and it's deserving of the CS50 certificate proving that I learnt and used the concepts
         from this amazing course.
     </p>
 </div>

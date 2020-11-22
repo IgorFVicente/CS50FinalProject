@@ -7,18 +7,21 @@
 {% block content %}
 <div id="change_pw_box">
 <div id="change_pw_content">
-    <form id="change_pw_form" action="{{ url_for('account.save_settings') }}'" method="POST">
+    <form id="change_pw_form" action="{{ url_for('account.change_login') }}" method="POST">
         <label for="email">Email</label>
         <input name="email" id="email" value="{{ account_info['email'] }}">
         <label for="email_confirm">New email</label>
         <input name="email_confirm" id="email_confirm">
         <label for="new_pw">New password</label>
-        <input name="new_pw" id="new_pw">
+        <input type="password" name="new_pw" id="new_pw">
         <label for="new_pw_confirm">Confirm New Password</label>
         <input type="password" name="new_pw_confirm" id="new_pw_confirm">
         <label for="old_pw">Old password</label>
-        <input name="old_pw" id="old_pw">
+        <input type="password" name="old_pw" id="old_pw">
         <input type="submit" value="Save"> 
+    </form>
+    <form id="back_form" action="{{ url_for('study_timer.account') }}">
+        <button type="submit" id="back_btn">Back</button>
     </form>
 </div>
 </div>
