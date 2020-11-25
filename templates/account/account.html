@@ -5,38 +5,33 @@
     <h1></h1>
 {% endblock %}
 {% block content %}
-<div id="account_box">
-<div id="account_content">
     <form id="account_form" action="{{ url_for('account.save_settings') }}" method="POST">
-        <h1 id="username">Username: 
-            <input type="text" id="account_username" name="account_username" value="{{ account_info['username'] }}">
-            <!-- <button type="button" id="change_name_btn" onclick="change_username()">Edit</button> -->
-        </h1>
-        <h1 id="streak">Study Streak: {{ account_info['streak'] }}</h1>
-        <h1 id="study_time">Daily Study Goal (in minutes) : 
-            <input type="number" id="account_study_time" name="account_study_time" value="{{ account_info['min_study_time'] }}" min="1" max="1440">
-            <!-- <button type="button" id="change_goal_btn" onclick="change_goal()">Edit</button> -->
-        </h1>
-        <label for="sunday">Sunday</label>
+        <label for="account_username" id="username" class="form_label">Username:</label>
+        <input type="text" id="account_username" class="info_input" name="account_username" value="{{ account_info['username'] }}">
+        <h1 id="streak" class="form_label">Study Streak: {{ account_info['streak'] }}</h1>
+        <label for="account_study_time" id="study_time" class="form_label">Daily Study Goal (in minutes):</label>
+        <input type="number" id="account_study_time" class="info_input" name="account_study_time" value="{{ account_info['min_study_time'] }}" min="1" max="1440">
+        <h1 class="form_label">Days you need to study: </h1>
+        <div id="weekdays">
         <input type="checkbox" id="sunday" name="sun" {% if 'sun' in weekdays %}checked {% endif %}>
-        <label for="monday">Monday</label>
+        <label for="sunday">Sunday</label>
         <input type="checkbox" id="monday" name="mon" {% if 'mon' in weekdays %}checked {% endif %}>
+        <label for="monday">Monday</label>
+        <input type="checkbox" id="tuesday" name="tue" {% if 'tue' in weekdays %}checked {% endif %}>        
         <label for="tuesday">Tuesday</label>
-        <input type="checkbox" id="tuesday" name="tue" {% if 'tue' in weekdays %}checked {% endif %}>
-        <label for="wednesday">Wednesday</label>
         <input type="checkbox" id="wednesday" name="wed" {% if 'wed' in weekdays %}checked {% endif %}>
+        <label for="wednesday">Wednesday</label>
+        <input type="checkbox" id="thursday" name="thu" {% if 'thu' in weekdays %}checked {% endif %}>  
         <label for="thursday">Thursday</label>
-        <input type="checkbox" id="thursday" name="thu" {% if 'thu' in weekdays %}checked {% endif %}>
-        <label for="friday">Friday</label>
         <input type="checkbox" id="friday" name="fri" {% if 'fri' in weekdays %}checked {% endif %}>
-        <label for="saturday">Saturday</label>
+        <label for="friday">Friday</label>
         <input type="checkbox" id="saturday" name="sat" {% if 'sat' in weekdays %}checked {% endif %}>
-        <button type="submit" id="save_settings_btn">Save Settings</button>
+        <label for="saturday">Saturday</label>
+        </div>
+        <button type="submit" id="save_settings_btn">SAVE SETTINGS</button>
     </form>
     <form id="change_password_form" action="{{ url_for('account.change_login') }}">
-        <button type="submit" id="change_pw_btn">Change login information</button>
+        <button type="submit" id="change_login_btn">CHANGE LOGIN INFORMATION</button>
     </form>
-</div>
-</div>
 <script type="text/javascript" src="/static/account.js"></script>
 {% endblock %} 

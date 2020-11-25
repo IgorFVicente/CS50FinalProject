@@ -9,16 +9,14 @@
     <div id="user_data">
         <h1>STUDY STREAK: {{ user_data['streak'] }} </h1>
         <h1>DAILY STUDY GOAL: {{ user_data['min_study_time'] }} min</h1>
+        <h1>TOTAL TIME: </h1>
+        <h1>LONGEST STREAK: </h1>
     </div>
     <div id="history_box">
+        <h1 id="register_heading">Time registers:</h1>
     {% for history in timer_history %}
         <div class="history_content">
-            <header>
-                <div>
-                    <div class="about">by {{ history['user_id'] }} on {{ history['created'] }}</div>
-                </div>
-            </header>
-            <p class="body">{{ history['hours'] }} : {{ history['minutes'] }} : {{ history['seconds'] }}</p>
+            <p class="body">{{ history['hours'] }} : {{ history['minutes'] }} : {{ history['seconds'] }} on {{ history['created'] }}</p>
         </div>
         {% if not loop.last %}
         {% endif %}

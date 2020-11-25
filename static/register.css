@@ -1,0 +1,27 @@
+#register_form {
+    width: 300px;
+    display: grid;
+    margin: auto;
+    margin-top: 100px;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto);
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
+.form_label {
+    margin: 10px 0 2px;
+}
+
+#register_btn {
+    margin-top: 10px;
+    width: 300px;
+    justify-self: center;
+    background-color: white;
+    font-family: Garamond;
+    font-weight: bolder;
+    font-size: 1.2em;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}

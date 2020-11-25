@@ -1,3 +1,29 @@
+/*icon from: https://freeicons.io/fuel-station/fire-icon-36631 color changes made to fit dark mode*/
+
+#user_data {
+    width: 300px;
+    margin: 100px auto 50px;
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
 #history_box {
-    max-width: 600px;
+    width: 500px;
+    display: grid;
+    margin: auto;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto);
+    font-size: 1.2em;
+}
+
+#register_heading {
+    justify-self: center;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.history_content {
+    justify-self: center;
+    margin-top: 10px;
+    border-bottom: 3px solid black;
 }

@@ -9,7 +9,9 @@ CREATE TABLE user (
     min_study_time INTEGER DEFAULT 60,
     streak TEXT DEFAULT '0',
     weekdays TEXT DEFAULT 'sunmontuewedthufrisat',
-    last_day TEXT
+    last_day TEXT,
+    total_time INTEGER DEFAULT 0,
+    longest_streak TEXT DEFAULT '0'
 );
 
 CREATE TABLE records (

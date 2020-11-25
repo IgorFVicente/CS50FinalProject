@@ -1,4 +1,4 @@
-#account_form {
+#change_pw_form {
     width: 300px;
     display: grid;
     margin: auto;
@@ -9,25 +9,25 @@
     font-weight: bolder;
 }
 
-#weekdays {
-    display: grid;
-    grid-template-columns: 7% 93%;
-}
-
-#change_password_form {
+#back_form {
     width: 300px;
     margin: auto;
 }
 
-.form_label {
-    margin: 10px 0 2px;
+#back_btn {
+    margin-top: 10px;
+    width: 300px;
+    justify-self: center;
+    background-color: white;
+    font-family: Garamond;
+    font-weight: bolder;
+    font-size: 1.2em;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.info_input {
-    width: 150px;
-}
-
-#save_settings_btn {
+#save_btn {
     margin-top: 10px;
     width: 300px;
     justify-self: center;
@@ -40,15 +40,7 @@
     cursor: pointer;
 }
 
-#change_login_btn {
-    margin-top: 10px;
-    width: 300px;
-    height: 29px;
-    background-color: white;
-    font-family: Garamond;
-    font-weight: bolder;
-    font-size: 1em;
-    border: 2px solid black;
-    border-radius: 5px;
-    cursor: pointer;
+.form_label {
+    margin: 10px 0 2px;
 }
+
