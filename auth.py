@@ -5,6 +5,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+from . import study_timer
 
 from myproject.db import get_db
 
@@ -81,21 +82,10 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            if user['last_day'] is not None:
-                last_day = datetime.strptime(user['last_day'], '%d-%m-%Y').date()
-                today = date.today() 
-                if (today - last_day).days >= 2:
-                    db.execute(
-                        'UPDATE user'
-                        ' SET streak = ?'
-                        ' WHERE id = ?',
-                        ('0', user['id'])
-                    )
-                    db.commit()
             return redirect(url_for('index'))
         
         flash(error)
-
+        study_timer.validate_streak(user['id'])
     return render_template('auth/login.html')
 
 

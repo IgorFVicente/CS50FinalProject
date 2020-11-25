@@ -13,13 +13,15 @@
     margin: auto;
     grid-template-columns: 100%;
     grid-template-rows: repeat(auto);
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 #register_heading {
     justify-self: center;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bolder;
+    border-bottom: 3px solid black;
+    margin-bottom: 10px;
 }
 
 .history_content {

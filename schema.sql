@@ -10,8 +10,8 @@ CREATE TABLE user (
     streak TEXT DEFAULT '0',
     weekdays TEXT DEFAULT 'sunmontuewedthufrisat',
     last_day TEXT,
-    total_time INTEGER DEFAULT 0,
-    longest_streak TEXT DEFAULT '0'
+    total_time TEXT DEFAULT '00:00:00',
+    longest_streak INTEGER DEFAULT 0
 );
 
 CREATE TABLE records (

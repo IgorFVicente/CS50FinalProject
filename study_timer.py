@@ -2,12 +2,33 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 )
 from werkzeug.exceptions import abort
-from datetime import date
+from datetime import datetime, date
 
 from myproject.auth import login_required
 from myproject.db import get_db
 
 bp = Blueprint('study_timer', __name__)
+
+
+def validate_streak(id):
+    db = get_db()
+    user = db.execute(
+        'SELECT * FROM user'
+        ' WHERE id = ?',
+        (id,)
+    ).fetchone()
+    if user['last_day'] is not None:
+                last_day = datetime.strptime(user['last_day'], '%d-%m-%Y').date()
+                today = date.today() 
+                if (today - last_day).days >= 2:
+                    db.execute(
+                        'UPDATE user'
+                        ' SET streak = ?'
+                        ' WHERE id = ?',
+                        ('0', user['id'])
+                    )
+                    db.commit()
+
 
 def validate_goal(id):
     db = get_db()
@@ -40,6 +61,8 @@ def validate_goal(id):
 
 @bp.route('/')
 def index():
+    if g.user['id'] is not None:
+        validate_streak(g.user['id'])
     return render_template('study_timer/index.html')
 
 
@@ -76,8 +99,27 @@ def save():
     )
     db.commit()
 
+    #total_time = db.execute(
+    #    'SELECT total_time FROM user '
+    #    ' WHERE id = ?',
+    #    (g.user['id'],)
+    #).fetchone()
+
+    #total_time_hour = int(total_time[:-6]) + int(hours)
+    #total_time_minutes = int(total_time[-5:-3]) + int(minutes)
+    #total_time_seconds = int(total_time[-2:]) + int(seconds)
+    #total_time = str(total_time_hour) + ":" + str(total_time_minutes) + ":" + str(total_time_seconds)
+
+    #db.execute(
+    #    'UPDATE user'
+    #    ' SET total_time = ?'
+    #    ' WHERE id = ?',
+    #    (total_time, g.user['id'])
+    #)
+    #db.commit()
+
     user_data = db.execute(
-            'SELECT * FROM user '
+            'SELECT * FROM user'
             ' WHERE id = ?',
             (g.user['id'],)
         ).fetchone()
@@ -89,10 +131,27 @@ def save():
         db.execute(
             'UPDATE user'
             ' SET last_day = ?,'
-            ' streak = ?',
-            (today, current_streak)
+            ' streak = ?'
+            ' WHERE id = ?',
+            (today, current_streak, g.user['id'])
         )
         db.commit()
+
+        #longest_streak = db.execute(
+        #    'SELECT longest_streak FROM user'
+        #    ' WHERE id = ?',
+        #    (g.user['id'],)
+        #).fetchone()
+        
+        #if current_streak > longest_streak:
+        #    db.execute(
+        #        'UPDATE user'
+        #        ' SET longest_streak = ?'
+        #        ' WHERE id = ?',
+        #        (current_streak, g.user['id'])
+        #    )
+        #    db.commit()
+
     return redirect(url_for('study_timer.index'))
 
 
@@ -112,11 +171,6 @@ def account():
     #    c += 3
     weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
     return render_template('account/account.html', account_info=account_info, weekdays=weekdays)
-
-
-@bp.route('/tips')
-def tips():
-    return render_template('study_timer/tips.html')
 
 
 @bp.route('/about')
