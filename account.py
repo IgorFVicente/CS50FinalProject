@@ -36,12 +36,15 @@ def change_login():
 
         if email != "" and email != account_info['email']:
             if email != email_confirm:
-                error = 'The confirmation e-mail doesnt match.'
-            elif db.execute(
+                error = "The confirmation e-mail doesn't match."
+            if db.execute(
                 'SELECT id FROM user WHERE email = ?', (email,)
                 ).fetchone() is not None:
                 error = 'Email {} is already registered.'.format(email)
         
+        if email_confirm != "" and email != email_confirm:
+            error = "The confirmation e-mail doesn't match."
+
         if new_pw != "":
             if len(new_pw) < 6 or not any(str.isdigit(c) for c in new_pw) or not any(str.isalpha(c) for c in new_pw):
                 error = 'New password must contain at least one number and one letter and must be at least six characters long.'
@@ -80,8 +83,6 @@ def change_login():
 def save_settings():
     username = request.form['account_username']
     weekdays = ""
-    if request.form.get('sun') is not None:
-        weekdays += 'sun'
     if request.form.get('mon') is not None:
         weekdays += 'mon'
     if request.form.get('tue') is not None:
@@ -94,22 +95,28 @@ def save_settings():
         weekdays += 'fri'
     if request.form.get('sat') is not None:
         weekdays += 'sat'
-    goal = request.form['account_study_time']
-    
+    if request.form.get('sun') is not None:
+        weekdays += 'sun'
+    if request.form['account_study_time'].isnumeric():
+        goal = int(request.form['account_study_time'])
+    else:
+        goal = 60
+
     error = None
     db = get_db()
     user_id = g.user['id']
     if len(username) < 6:
         error = 'Username must be at least 6 characters long.'
-    elif (not isinstance(goal, int)) or goal < 1 or goal > 1440:
+    elif goal < 1 or goal > 1440:
         error = 'Invalid study goal time.'
     else:
         db.execute(
             'UPDATE user'
             ' SET username = ?,'
-            ' min_study_time = ?'
+            ' min_study_time = ?,'
+            ' weekdays = ?'
             ' WHERE id = ?',
-            (username, goal, user_id)
+            (username, goal, weekdays, user_id)
         )
         db.commit()
     if error is not None:

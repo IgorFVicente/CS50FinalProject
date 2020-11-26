@@ -8,7 +8,7 @@
     <form id="change_pw_form" action="{{ url_for('account.change_login') }}" method="POST">
         <label for="email" class="form_label">Email</label>
         <input name="email" id="email" value="{{ account_info['email'] }}">
-        <label for="email_confirm" class="form_label">New email</label>
+        <label for="email_confirm" class="form_label">Confirm email</label>
         <input name="email_confirm" id="email_confirm">
         <label for="new_pw" class="form_label">New password</label>
         <input type="password" name="new_pw" id="new_pw">

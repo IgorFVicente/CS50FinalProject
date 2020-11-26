@@ -7,8 +7,8 @@ CREATE TABLE user (
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     min_study_time INTEGER DEFAULT 60,
-    streak TEXT DEFAULT '0',
-    weekdays TEXT DEFAULT 'sunmontuewedthufrisat',
+    streak INTEGER DEFAULT 0,
+    weekdays TEXT DEFAULT 'montuewedthufrisatsun',
     last_day TEXT,
     total_time TEXT DEFAULT '00:00:00',
     longest_streak INTEGER DEFAULT 0

@@ -5,7 +5,6 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from . import study_timer
 
 from myproject.db import get_db
 
@@ -29,10 +28,10 @@ def register():
             error = 'E-mail is required.'
         elif not password:
             error = 'Password is required.'
-        elif len(username) < 6:
-            error = 'Username is too short.'
-        elif len(password) < 6 or not any(str.isdigit(c) for c in password) or not any(str.isalpha(c) for c in password):
-            error = 'Password must contain at least one number and one letter and must be at least six characters long.'
+        elif len(username) < 6 or len(username) > 15:
+            error = 'Username must be between 6 and 15 characters.'
+        elif len(password) < 6 or len(password) > 15 or not any(str.isdigit(c) for c in password) or not any(str.isalpha(c) for c in password):
+            error = 'Password must contain at least one number and one letter and must have between 6 and 15 characters.'
         elif email != email_confirm:
             error = 'The confirmation e-mail doesnt match.'
         elif password != password_confirm:
@@ -85,7 +84,6 @@ def login():
             return redirect(url_for('index'))
         
         flash(error)
-        study_timer.validate_streak(user['id'])
     return render_template('auth/login.html')
 
 
