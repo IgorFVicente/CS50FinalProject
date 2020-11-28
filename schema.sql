@@ -11,7 +11,8 @@ CREATE TABLE user (
     weekdays TEXT DEFAULT 'montuewedthufrisatsun',
     last_day TEXT,
     total_time TEXT DEFAULT '00:00:00',
-    longest_streak INTEGER DEFAULT 0
+    longest_streak INTEGER DEFAULT 0,
+    dark_mode TEXT DEFAULT 'no'
 );
 
 CREATE TABLE records (

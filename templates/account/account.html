@@ -28,6 +28,7 @@
         <input type="checkbox" id="saturday" name="sat" {% if 'sat' in weekdays %}checked {% endif %}>
         <label for="saturday">Saturday</label>
         </div>
+        <label for="dark_mode" class="form_label">Dark Mode: <input type="checkbox" id="dark_mode" name="dark_mode" {% if g.user['dark_mode'] == 'yes' %}checked {% endif %}></label>
         <button type="submit" id="save_settings_btn">SAVE SETTINGS</button>
     </form>
     <form id="change_password_form" action="{{ url_for('account.change_login') }}">

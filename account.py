@@ -83,6 +83,7 @@ def change_login():
 def save_settings():
     username = request.form['account_username']
     weekdays = ""
+    dark_mode = 'no'
     if request.form.get('mon') is not None:
         weekdays += 'mon'
     if request.form.get('tue') is not None:
@@ -102,6 +103,9 @@ def save_settings():
     else:
         goal = 60
 
+    if request.form.get('dark_mode') is not None:
+        dark_mode = 'yes'
+
     error = None
     db = get_db()
     user_id = g.user['id']
@@ -114,9 +118,10 @@ def save_settings():
             'UPDATE user'
             ' SET username = ?,'
             ' min_study_time = ?,'
-            ' weekdays = ?'
+            ' weekdays = ?,'
+            ' dark_mode = ?'
             ' WHERE id = ?',
-            (username, goal, weekdays, user_id)
+            (username, goal, weekdays, dark_mode, user_id)
         )
         db.commit()
     if error is not None:
