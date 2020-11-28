@@ -74,3 +74,11 @@ a {
   color: black;
   font-weight: 600;
 }
+
+.flash {
+  display: block;
+  color: red;
+  width: 300px;
+  margin: auto;
+  font-weight: bolder;
+}

@@ -33,9 +33,9 @@ def register():
         elif len(password) < 6 or len(password) > 15 or not any(str.isdigit(c) for c in password) or not any(str.isalpha(c) for c in password):
             error = 'Password must contain at least one number and one letter and must have between 6 and 15 characters.'
         elif email != email_confirm:
-            error = 'The confirmation e-mail doesnt match.'
+            error = 'The confirmation e-mail doesn\'t match.'
         elif password != password_confirm:
-            error = "The provided passwords don't match."
+            error = 'The provided passwords don\'t match.'
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
