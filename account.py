@@ -109,10 +109,16 @@ def save_settings():
     error = None
     db = get_db()
     user_id = g.user['id']
-    if len(username) < 6:
-        error = 'Username must be at least 6 characters long.'
+    if len(username) < 6 or len(username) > 15:
+        error = 'Username must be between 6 and 15 characters.'
     elif goal < 1 or goal > 1440:
         error = 'Invalid study goal time.'
+    elif db.execute(
+        'SELECT * from user'
+        ' WHERE username = ?',
+        (username,)
+    ).fetchone() is not None:
+        error = 'This username is already in use.'
     else:
         db.execute(
             'UPDATE user'
