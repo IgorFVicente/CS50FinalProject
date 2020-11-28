@@ -1,0 +1,86 @@
+:root {
+    --color1: #122C34; /* white text */
+    --color2: #224870; /* white text */
+    --color3: #2A4494; /* white text */
+    --color4: #4EA5D9; /* white text */
+    --color5: #44CFCB; /* black text */
+  }
+
+body {
+  font-family: Garamond;
+  color: white;
+  background-color: black;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+.tab {
+  margin-left: 20px;
+}
+
+#top_bar {
+  width: 95vw;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#main_menu {
+  width: 100vw;
+  padding: 0 350px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#user_menu {
+  position: relative;
+  margin-right: 50px;
+  margin-left: -50px;
+}
+
+#user_dropdown {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+#user_menu:hover #user_dropdown {
+  display: block;
+}
+
+#dropdown_link {
+  margin-top: 10px;
+}
+
+#login_menu {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -120px;
+}
+
+#login_menu li {
+  width: 60px;
+}
+
+a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#user {
+  color: white;
+  font-weight: 600;
+}
+
+.flash {
+  display: block;
+  color: red;
+  width: 300px;
+  margin: auto;
+  font-weight: bolder;
+}

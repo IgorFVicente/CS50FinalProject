@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 <!-- icon from: https://freeicons.io/icon-list/business-and-online-icons color changes made to fit dark mode*/ -->
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
+{% block style %}
+{% if g.user['dark_mode'] == 'yes' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index_dark.css') }}">
+{% else %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endif %}
+{% endblock %}
 {% block content %}
     <main id="content_container">
         <form id="timer_form" action="{{ url_for('study_timer.save') }}" method="POST">    
@@ -25,11 +31,11 @@
     </main>
     <div id="study_music">
         <div id="study_text">Wanna hear some music?
-        <img src="../static/img/down_icon.svg" id="down_icon" onclick="videoToggle()">
+        <img {% if g.user['dark_mode'] == 'yes' %} src="../static/img/down_icon_white.svg" {% else %} src="../static/img/down_icon.svg" {% endif %} class="icon" onclick="videoToggle()">
         </div>
         <iframe id="embed_video" width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
     </div>
-    <div><button type="button" onclick="dark_mode()">DARK MODE</button></div>
-    <footer id="footer">Igor F. Vicente - 2020 - CS50 Final Project</footer>
+    <footer id="footer"><a href="https://github.com/IgorFVicente/CS50FinalProject">Igor F. Vicente - 2020 - CS50 Final Project
+        <img {% if g.user['dark_mode'] == 'yes' %} src="../static/img/github_white.svg" {% else %} src="../static/img/github.svg" {% endif %} id="git_icon"></a></footer>
     <script type="text/javascript" src="/static/script.js"></script>
 {% endblock %}

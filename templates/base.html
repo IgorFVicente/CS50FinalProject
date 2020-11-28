@@ -2,7 +2,11 @@
 <head>
   <title>{% block title %}{% endblock %}Study Timer</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% if g.user['dark_mode'] == 'yes' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_dark.css') }}">
+  {% else %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% endif %}
   <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png')}}"/>
   {% block style %}{% endblock %}
 </head>
