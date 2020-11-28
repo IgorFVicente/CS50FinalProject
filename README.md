@@ -15,12 +15,12 @@ The database has two tables:
 - The second for the study time records, with an unique and auto generated id, the id of the user who saved the record, registers for the date and time the record was made (using timezone) and how many hours, minutes and seconds of study for that record.
 
 The pages are:
-The index, were the stopwatch can be started, paused and stopped and where you can save a register of study time (if you are logged in).
+- The index, were the stopwatch can be started, paused and stopped and where you can save a register of study time (if you are logged in).
 
-The "My history", where you can see all the registers you saved.
+- The "My history", where you can see all the registers you saved.
 
-The "about" page where there's a little introduction about the meaning of the web app.
+- The "about" page where there's a little introduction about the meaning of the web app.
 
-The "Sign In" and "Sign Up" pages if you are logged off, for you to register a new account or to login with one you already created (you can login using either your username or e-mail).
+- The "Sign In" and "Sign Up" pages if you are logged off, for you to register a new account or to login with one you already created (you can login using either your username or e-mail).
 
-The "Account" page where you can change your username, daily goal and also the days that should be counted as study days (if you don't study in a "non-study day" the app won't reset your current streak). You can also acces a page through this one to change your login information, as long as you provide your current password.
+- The "Account" page where you can change your username, daily goal and also the days that should be counted as study days (if you don't study in a "non-study day" the app won't reset your current streak). You can also acces a page through this one to change your login information, as long as you provide your current password.
