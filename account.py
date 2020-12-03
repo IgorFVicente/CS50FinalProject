@@ -113,7 +113,7 @@ def save_settings():
         error = 'Username must be between 6 and 15 characters.'
     elif goal < 1 or goal > 1440:
         error = 'Invalid study goal time.'
-    elif db.execute(
+    elif username != g.user['username'] and db.execute(
         'SELECT * from user'
         ' WHERE username = ?',
         (username,)
